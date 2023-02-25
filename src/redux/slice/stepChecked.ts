@@ -16,19 +16,19 @@ const initialState: State = {
   items: [
     {
       id: 1,
-      name: 'Capsicum',
+      name: 'on-line service',
       price: 1,
       isChecked: false,
     },
     {
       id: 2,
-      name: 'Paneer',
+      name: 'larger storage',
       price: 2,
       isChecked: false,
     },
     {
       id: 3,
-      name: 'Red Paprika',
+      name: 'customizable',
       price: 2,
       isChecked: false,
     },

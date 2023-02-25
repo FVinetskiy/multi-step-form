@@ -32,6 +32,7 @@
         color: #fff
         border: 2px solid #3a6df0
         margin-right: 20px
+        flex:0 0 auto
     &__title
         color:#fff
         font-size: 14px
@@ -40,3 +41,14 @@
         color:#fff
         font-size: 16px
         font-weight: 700
+    @media only screen and (max-width: 768px)
+        display: flex
+        align-items: center
+        justify-content: space-around
+        width: 100%
+        &__item
+            margin: 0
+        &__wrap-text
+            display: none
+        &__circle
+            margin-right: 0

@@ -14,7 +14,7 @@ import { selectChecked } from '../../redux/slice/stepChecked';
 
 const Step4 = () => {
   const navigate = useNavigate();
-  const { switchYearly } = useSelector(selectDetail);
+  const { switchYearly, plan, valuePlan } = useSelector(selectDetail);
   const { items } = useSelector(selectChecked);
 
   const dispatch = useAppDispatch();
@@ -39,6 +39,17 @@ const Step4 = () => {
     (word) => word.isChecked === true
   );
 
+  const activePlan = plan.filter((item) => item.name === valuePlan);
+  const price = activePlan.map((i) => i.price);
+  const resultActivePlan = `$${price[0].toFixed(2)}`;
+  const resultActivePlanSwitch = price[0] * 10;
+  const priceMOD = price[0];
+  const priceSumOption = ArrCheckBoxTrue.map((i) => i.price).reduce(
+    (sum, elem) => sum + elem,
+    0
+  );
+  const totalPrice = priceSumOption + priceMOD;
+
   return (
     <div>
       <Header
@@ -47,9 +58,19 @@ const Step4 = () => {
           'Double-check everything looks OK before confirming'
         }
       />
-
       <div className="result">
-        <p>Arcade ( {switchYearly ? 'Yearly' : 'Monthly'} )</p>
+        <div className="result__header">
+          <p>
+            {activePlan.map((i) => i.name)} ({' '}
+            {switchYearly ? 'Yearly' : 'Monthly'} )
+          </p>
+
+          {switchYearly ? (
+            <p>{`$${resultActivePlanSwitch.toFixed(2)}`}</p>
+          ) : (
+            <p>{resultActivePlan}</p>
+          )}
+        </div>
         <button className="result__link" onClick={setSwitchOr}>
           Change
         </button>
@@ -57,29 +78,38 @@ const Step4 = () => {
         {ArrCheckBoxTrue.map((item) => (
           <div className="result__cheked" key={item.id}>
             <p>{item.name}</p>
-            <p>{`$${item.price.toFixed(2)}`}</p>
+            {switchYearly ? (
+              <p>{`$${(item.price * 10).toFixed(2)}`}</p>
+            ) : (
+              <p>{`$${item.price.toFixed(2)}`}</p>
+            )}
           </div>
         ))}
 
         <p className="totalPrice">
-          total per({switchYearly ? 'Yearly' : 'Monthly'})
+          <span>
+            total per({switchYearly ? 'Yearly' : 'Monthly'})
+          </span>
+          <span>
+            {switchYearly ? `$${totalPrice * 10}` : `$${totalPrice}`}
+          </span>
         </p>
       </div>
 
-      <MainForm onSubmit={onSubmit}>
-        <div className="step2__wrapper-button">
-          <MoveButton
-            variant={'outlined'}
-            text={' Go back'}
-            onClick={() => navigate(-1)}
-          />
+      <div className="step2__wrapper-button">
+        <MoveButton
+          variant={'outlined'}
+          text={'Go back'}
+          onClick={() => navigate(-1)}
+        />
+        <MainForm onSubmit={onSubmit}>
           <MoveButton
             onClick={finish}
             variant={'contained'}
             text={'Confirm'}
           />
-        </div>
-      </MainForm>
+        </MainForm>
+      </div>
       <hr />
     </div>
   );

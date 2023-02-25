@@ -2,6 +2,8 @@ body
   margin: 0
   padding: 0
   font-family: 'Roboto', sans-serif
+  min-width: 320px
+  overflow: auto
 /*fw 400700 */
 
 *
@@ -12,6 +14,9 @@ body
   align-items: center
   justify-content: center
   min-height: 100vh
+  padding: 0 16px
+  padding-bottom: 40px
+  padding-top: 16px
 
 .mainform
   background-color: rgba(16 18 27 / 40%)
@@ -26,6 +31,9 @@ body
   -webkit-backdrop-filter: blur(20px)
   margin: 0 auto
   padding: 16px
+  @media only screen and (max-width: 768px)
+    flex-direction: column
+    height: auto
 
 .MuiFormControl-root
   margin-bottom: 24px!important
@@ -38,3 +46,7 @@ body
 
 div.MuiInputBase-root:before
   border-bottom:1px solid rgba(255,255, 255, 0.42)
+
+
+button[aria-pressed="true"]
+  background: linear-gradient(to right top, #cf4af3, #e73bd7, #f631bc, #fd31a2, #ff3a8b, #ff4b78, #ff5e68, #ff705c, #ff8c51, #ffaa49, #ffc848, #ffe652)!important
