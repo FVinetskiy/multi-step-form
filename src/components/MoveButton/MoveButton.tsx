@@ -1,12 +1,22 @@
 import Button from '@mui/material/Button';
 
 type ButtonProps = {
-  text: string
-}
+  text: string;
+  variant: 'text' | 'outlined' | 'contained';
+  onClick?: () => void;
+};
 
-const MoveButton: React.FC<ButtonProps> = ({ text  , ...props}) => {
+const MoveButton: React.FC<ButtonProps> = ({
+  text,
+  variant,
+  ...props
+}) => {
   return (
-    <Button {...props} type="submit" variant="contained">
+    <Button
+      {...props}
+      type="submit"
+      variant={variant}
+    >
       {text}
     </Button>
   );

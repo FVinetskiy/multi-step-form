@@ -1,4 +1,3 @@
-import React from 'react';
 import './Step1.sass';
 import Header from '../Header/Header';
 import MainForm from '../MainForm/MainForm';
@@ -8,6 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../redux/store';
+import { useSelector } from 'react-redux';
+import { selectDetail, setData } from '../../redux/slice/stepSlice';
 
 const scheme = yup.object().shape({
   firstName: yup
@@ -28,19 +30,27 @@ const scheme = yup.object().shape({
 });
 
 const Step1 = () => {
+  const dispatch = useAppDispatch();
+  const { data } = useSelector(selectDetail);
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'onBlur',
+    defaultValues: {
+      firstName: data.firstName,
+      email: data.email,
+      phone: data.phone,
+    },
     resolver: yupResolver(scheme),
   });
 
   const onSubmit = (data: Object) => {
     navigate('/select-plan');
-    console.log(data);
+    dispatch(setData(data));
   };
 
   return (
@@ -80,7 +90,7 @@ const Step1 = () => {
           helperText={errors?.phone?.message}
         />
 
-        <MoveButton text={'Next Step'} />
+        <MoveButton variant={'contained'} text={'Next Step'} />
       </MainForm>
     </div>
   );

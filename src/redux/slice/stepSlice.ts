@@ -2,7 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 const initialState = {
-  data: {},
+  data: {
+    firstName: '',
+    email: '',
+    phone: '',
+  },
+  plan: 'Arcade',
+  switchYearly: false,
 };
 
 const stepSlice = createSlice({
@@ -12,9 +18,19 @@ const stepSlice = createSlice({
     setData(state, action) {
       state.data = action.payload;
     },
+    setplan(state, action) {
+      state.plan = action.payload;
+    },
+    setSwitch(state, action) {
+      state.switchYearly = action.payload;
+    },
+    setSwitchOnStep4(state, action) {
+      state.switchYearly = action.payload;
+    },
   },
 });
 
 export default stepSlice.reducer;
 export const selectDetail = (state: RootState) => state.stepSlice;
-export const { setData } = stepSlice.actions;
+export const { setData, setplan, setSwitch, setSwitchOnStep4 } =
+  stepSlice.actions;
