@@ -14,9 +14,9 @@ import MoveButton from '../MoveButton/MoveButton';
 import './Step2.sass';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
-import React from 'react';
+import { FC } from 'react';
 
-const Step2 = () => {
+const Step2: FC = () => {
   const dispatch = useAppDispatch();
   const { plan, switchYearly, valuePlan } = useSelector(selectDetail);
   const navigate = useNavigate();
@@ -25,11 +25,11 @@ const Step2 = () => {
     navigate('/add-ons');
   };
 
-  const switchHandler = (event:any) => {
+  const switchHandler = (event: any) => {
     dispatch(setSwitch(event.target.checked));
   };
 
-  const handleAlignment = (event:any, alignment:any) => {
+  const handleAlignment = (event: any, alignment: any) => {
     if (alignment !== null) {
       dispatch(setValueplan(alignment));
     }
@@ -51,7 +51,7 @@ const Step2 = () => {
           onChange={handleAlignment}
           aria-label="text alignment"
         >
-          {plan.map((item ) => (
+          {plan.map((item) => (
             <ToggleButton
               id={item.id}
               key={item.id}
@@ -76,10 +76,15 @@ const Step2 = () => {
         <div className="step2__wrapper-button">
           <MoveButton
             variant={'outlined'}
+            disabled={false}
             text={' Go back'}
             onClick={() => navigate(-1)}
           />
-          <MoveButton variant={'contained'} text={'Next Step'} />
+          <MoveButton
+            disabled={false}
+            variant={'contained'}
+            text={'Next Step'}
+          />
         </div>
       </MainForm>
       <hr />

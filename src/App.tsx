@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './pages/NotFound/NotFound';
-
 import Step1 from './components/Step1/Step1';
 import Step2 from './components/Step2/Step2';
 import Step3 from './components/Step3/Step3';

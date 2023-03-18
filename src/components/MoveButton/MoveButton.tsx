@@ -1,12 +1,14 @@
 import Button from '@mui/material/Button';
+import { FC } from 'react';
 
 type ButtonProps = {
   text: string;
   variant: 'text' | 'outlined' | 'contained';
   onClick?: () => void;
+  disabled: any;
 };
 
-const MoveButton: React.FC<ButtonProps> = ({
+const MoveButton: FC<ButtonProps> = ({
   text,
   variant,
   ...props

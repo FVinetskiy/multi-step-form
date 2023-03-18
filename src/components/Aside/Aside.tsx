@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import './Aside.sass';
+import { FC } from 'react';
 
-const Aside:React.FC = () => {
+const Aside:FC = () => {
   return (
     <ul className="steps">
       <li className="steps__item">

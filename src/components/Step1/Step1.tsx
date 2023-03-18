@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { selectDetail, setData } from '../../redux/slice/stepSlice';
+import { FC } from 'react';
 
 const scheme = yup.object().shape({
   firstName: yup
@@ -29,7 +30,7 @@ const scheme = yup.object().shape({
     .required('Phone number is required'),
 });
 
-const Step1 = () => {
+const Step1: FC = () => {
   const dispatch = useAppDispatch();
   const { data } = useSelector(selectDetail);
   const navigate = useNavigate();
@@ -90,10 +91,17 @@ const Step1 = () => {
           helperText={errors?.phone?.message}
         />
 
-        <MoveButton variant={'contained'} text={'Next Step'} />
+        <MoveButton
+          disabled={
+            !!errors.phone && !!errors.email && !!errors.firstName
+          }
+          variant={'contained'}
+          text={'Next Step'}
+        />
       </MainForm>
     </div>
   );
 };
+// disabled={'d'}
 
 export default Step1;

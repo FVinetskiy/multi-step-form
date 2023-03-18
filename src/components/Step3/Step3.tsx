@@ -10,8 +10,9 @@ import {
   toggleChecked,
 } from '../../redux/slice/stepChecked';
 import { selectDetail } from '../../redux/slice/stepSlice';
+import { FC } from 'react';
 
-const Step3 = () => {
+const Step3: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { items } = useSelector(selectChecked);
@@ -26,8 +27,6 @@ const Step3 = () => {
   };
 
   const getFormattedPrice = (price: any) => `$${price.toFixed(2)}`;
-
-
 
   return (
     <div className="step3">
@@ -65,10 +64,15 @@ const Step3 = () => {
         <div className="step2__wrapper-button">
           <MoveButton
             variant={'outlined'}
+            disabled={false}
             text={' Go back'}
             onClick={() => navigate(-1)}
           />
-          <MoveButton variant={'contained'} text={'Next Step'} />
+          <MoveButton
+            disabled={false}
+            variant={'contained'}
+            text={'Next Step'}
+          />
         </div>
       </MainForm>
       <hr />

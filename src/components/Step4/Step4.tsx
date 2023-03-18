@@ -11,16 +11,17 @@ import {
 } from '../../redux/slice/stepSlice';
 import { useAppDispatch } from '../../redux/store';
 import { selectChecked } from '../../redux/slice/stepChecked';
+import { FC } from 'react';
 
-const Step4 = () => {
+const Step4:FC = () => {
   const navigate = useNavigate();
   const { switchYearly, plan, valuePlan } = useSelector(selectDetail);
   const { items } = useSelector(selectChecked);
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = () => {
-    navigate('/summary');
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   const finish = () => {
@@ -59,6 +60,9 @@ const Step4 = () => {
         }
       />
       <div className="result">
+        <button className="result__link" onClick={setSwitchOr}>
+          Change
+        </button>
         <div className="result__header">
           <p>
             {activePlan.map((i) => i.name)} ({' '}
@@ -71,10 +75,7 @@ const Step4 = () => {
             <p>{resultActivePlan}</p>
           )}
         </div>
-        <button className="result__link" onClick={setSwitchOr}>
-          Change
-        </button>
-        <hr />
+
         {ArrCheckBoxTrue.map((item) => (
           <div className="result__cheked" key={item.id}>
             <p>{item.name}</p>
@@ -98,19 +99,20 @@ const Step4 = () => {
 
       <div className="step2__wrapper-button">
         <MoveButton
+          disabled={false}
           variant={'outlined'}
           text={'Go back'}
           onClick={() => navigate(-1)}
         />
         <MainForm onSubmit={onSubmit}>
           <MoveButton
+            disabled={false}
             onClick={finish}
             variant={'contained'}
             text={'Confirm'}
           />
         </MainForm>
       </div>
-      <hr />
     </div>
   );
 };

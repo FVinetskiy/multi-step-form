@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import './Header.sass';
 
 type IheaderProps = {
@@ -5,7 +6,7 @@ type IheaderProps = {
   description: string;
 };
 
-const Header:React.FC<IheaderProps> = ({ title, description }) => {
+const Header:FC<IheaderProps> = ({ title, description }) => {
   return (
     <div className="header">
       <p className="header__title">🐱{title}</p>

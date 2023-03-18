@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { FC } from 'react';
 import './MainForm.sass';
 
 interface IpropsForm {
@@ -6,7 +6,11 @@ interface IpropsForm {
   onSubmit: (param: any) => void;
 }
 
-const MainForm = ({onSubmit, children, ...props }: IpropsForm) => {
+const MainForm: FC<IpropsForm> = ({
+  onSubmit,
+  children,
+  ...props
+}) => {
   return (
     <form
       autoComplete="off"
